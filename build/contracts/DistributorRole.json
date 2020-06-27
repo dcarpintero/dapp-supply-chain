@@ -2589,7 +2589,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-06-27T21:40:07.214Z",
+  "updatedAt": "2020-06-27T22:21:47.242Z",
   "devdoc": {
     "details": "Contract module which provides a basic access control mechanism for the Distributor Role.  * By default, the first distributor account will be the one that deploys the contract.  ",
     "methods": {}

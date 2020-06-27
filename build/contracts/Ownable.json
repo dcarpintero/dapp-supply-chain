@@ -2570,7 +2570,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-06-27T21:40:07.239Z",
+  "updatedAt": "2020-06-27T22:21:47.269Z",
   "devdoc": {
     "details": "Contract module which provides a basic access control mechanism, where there is an account (an owner) that can be granted exclusive access to specific functions.  * By default, the owner account will be the one that deploys the contract. This can later be changed with {transferOwnership}.  ",
     "methods": {
