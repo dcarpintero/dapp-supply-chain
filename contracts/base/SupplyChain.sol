@@ -19,7 +19,6 @@ contract SupplyChain is
 {
     uint256 upc;
     uint256 sku;
-    string productImageHash;
 
     mapping(uint256 => string[]) itemsHistory;
 
@@ -96,15 +95,23 @@ contract SupplyChain is
     /**
      * @dev Allows a Farmer to set the hash of the Item image.
      */
-    function sendHash(string memory _productImageHash) public onlyFarmer {
-        productImageHash = _productImageHash;
+    function setProductImageHash(uint256 _upc, string memory _imageHash)
+        public
+        onlyFarmer
+        onlyItemOwner(_upc)
+    {
+        items[_upc].productImageHash = _imageHash;
     }
 
     /**
      * @dev Allows everyone to set the hash of the Item image.
      */
-    function getProductImageHash() public view returns (string memory) {
-        return productImageHash;
+    function getProductImageHash(uint256 _upc)
+        public
+        view
+        returns (string memory)
+    {
+        return items[_upc].productImageHash;
     }
 
     /**
