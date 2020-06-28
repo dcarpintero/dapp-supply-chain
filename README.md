@@ -42,7 +42,7 @@ Ethereum DApp that exemplifies a Supply Chain wherein Items are tracked along Fa
 
 - Requires .infuraKey and .secret files (see truffle-config.js).
 
-### Quick Start
+### GEtting Started
 
 Install dependencies
 
