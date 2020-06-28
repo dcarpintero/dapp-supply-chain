@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Ethereum DApp that exemplifies a Supply Chain wherein Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements access control and state transitions as defined in the diagrams below.
+Ethereum DApp that exemplifies a Supply Chain wherein Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements **access control** and **state transitions** as defined in the diagrams below.
 
 ## UML Diagrams
 
