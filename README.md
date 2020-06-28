@@ -8,19 +8,27 @@ Ethereum DApp that exemplifies a Supply Chain wherein Items are tracked along Fa
 
 ### Activity Diagram
 
-![Activity Diagram](/uml/ActivityDiagram.svg)
+<p align="center">
+![Activity Diagram](/uml/ActivityDiagram.svg)  
+</p>
 
 ### Sequence Diagram
 
+<p align="center">
 ![Sequence Diagram](/uml/SequenceDiagram.svg)
+</p>
 
 ### State Diagram
 
+<p align="center">
 ![State Diagram](/uml/StateDiagram.svg)
+</p>
 
 ### Data Model Diagram
 
+<p align="center">
 ![Data Model Diagram](/uml/DataModelDiagram.svg)
+</p>
 
 ### Dependencies
 
