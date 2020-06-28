@@ -1,10 +1,25 @@
 # eth-supply-chain
 
-### UML Diagrams
+## Project Description
+
+Ethereum DApp that exemplifies a Supply Chain wherein Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements access control and state transitions as defined in the diagrams below.
+
+## UML Diagrams
+
+### Activity Diagram
 
 ![Activity Diagram](/uml/ActivityDiagram.svg)
+
+### Sequence Diagram
+
 ![Sequence Diagram](/uml/SequenceDiagram.svg)
+
+### State Diagram
+
 ![State Diagram](/uml/StateDiagram.svg)
+
+### Data Model Diagram
+
 ![Data Model Diagram](/uml/DataModelDiagram.svg)
 
 ### Dependencies
@@ -26,3 +41,31 @@
 ### Deployment to Rinkeby
 
 - Requires .infuraKey and .secret files (see truffle-config.js).
+
+### Quick Start
+
+Install dependencies
+
+```
+npm install
+```
+
+Launch Ganache
+
+```
+ganache-cli
+```
+
+Compile, test and migrate
+
+```
+truffle compile
+truffle test
+truffle migrate
+```
+
+Lauch the DApp
+
+```
+npm run dev
+```
