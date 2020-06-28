@@ -19,6 +19,7 @@ contract SupplyChain is
 {
     uint256 upc;
     uint256 sku;
+    string productImageHash;
 
     mapping(uint256 => string[]) itemsHistory;
 
@@ -81,6 +82,7 @@ contract SupplyChain is
             productID: sku + _upc,
             productNotes: _productNotes,
             productPrice: 0,
+            productImageHash: "",
             itemState: State.Harvested,
             distributorID: address(0),
             retailerID: address(0),
@@ -89,6 +91,20 @@ contract SupplyChain is
 
         sku = sku + 1;
         emit Harvested(_upc);
+    }
+
+    /**
+     * @dev Allows a Farmer to set the hash of the Item image.
+     */
+    function sendHash(string memory _productImageHash) public onlyFarmer {
+        productImageHash = _productImageHash;
+    }
+
+    /**
+     * @dev Allows everyone to set the hash of the Item image.
+     */
+    function getProductImageHash() public view returns (string memory) {
+        return productImageHash;
     }
 
     /**
@@ -142,7 +158,7 @@ contract SupplyChain is
         checkValue(_upc)
         onlyForSale(_upc)
     {
-        items[_upc].ownerID = msg.sender;
+        setItemOwner(_upc, msg.sender);
         items[_upc].distributorID = msg.sender;
         items[_upc].itemState = State.Sold;
 
@@ -169,7 +185,7 @@ contract SupplyChain is
      * @dev Allows a Retailer to mark an Item as 'Received'.
      */
     function receiveItem(uint256 _upc) public onlyRetailer onlyShipped(_upc) {
-        items[_upc].ownerID = msg.sender;
+        setItemOwner(_upc, msg.sender);
         items[_upc].retailerID = msg.sender;
         items[_upc].itemState = State.Received;
         emit Received(_upc);
@@ -179,10 +195,16 @@ contract SupplyChain is
      * @dev Allows a Consumer to mark an Item as 'Purchased'.
      */
     function purchaseItem(uint256 _upc) public onlyConsumer onlyReceived(_upc) {
-        items[_upc].ownerID = msg.sender;
+        setItemOwner(_upc, msg.sender);
         items[_upc].consumerID = msg.sender;
         items[_upc].itemState = State.Purchased;
         emit Purchased(_upc);
+    }
+
+    // Change Item Owner
+    function setItemOwner(uint256 _upc, address account) private {
+        items[_upc].ownerID = account;
+        emit OwnerChanged(account);
     }
 
     // Getters
