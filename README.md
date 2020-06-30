@@ -4,7 +4,9 @@ ganache-cli -m "spirit supply whale amount human item harsh scare congress disco
 
 ## Project Description
 
-Ethereum DApp that exemplifies a Supply Chain wherein Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements **Access Control** and **State Transitions** as defined in the diagrams below.
+Supply Chain Ethereum DApp. Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements **Access Control** and **State Transitions** as defined in the diagrams below.
+
+Integrates IPFS storage for product images, the returned hash is then saved as part of the Item's metadata.
 
 ## UML Diagrams
 
@@ -35,6 +37,7 @@ Ethereum DApp that exemplifies a Supply Chain wherein Items are tracked along Fa
 - truffle-assertions v0.9.2 - Additional assertions for Truffle tests
 - chai v4.2.0 - Assertion library
 - lite-server v2.4.0 - Lightweight development only node server
+- ipfs-api v26.1.2 - A client library for the IPFS HTTP API
 
 ### Smart Contract
 
