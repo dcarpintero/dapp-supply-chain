@@ -101,6 +101,7 @@ contract SupplyChain is
         onlyItemOwner(_upc)
     {
         items[_upc].productImageHash = _imageHash;
+        emit ItemImageHashSaved(_upc);
     }
 
     /**

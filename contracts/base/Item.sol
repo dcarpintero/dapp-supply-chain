@@ -49,6 +49,7 @@ abstract contract Item {
     event Shipped(uint256 upc);
     event Received(uint256 upc);
     event Purchased(uint256 upc);
+    event ItemImageHashSaved(uint256 upc);
     event OwnerChanged(address account);
 
     modifier onlyHarvested(uint256 _upc) {
