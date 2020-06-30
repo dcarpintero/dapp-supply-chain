@@ -13,10 +13,10 @@
 
   <body>
     <div class="container">
-      <h1 style="text-align: center;">Fair Trade Coffee</h1>
+      <h1 style="text-align: center;">Fair Trade Product</h1>
       <hr />
       <p style="text-align: center;">
-        Prove the authenticity of coffee using the Ethereum blockchain.
+        Prove the authenticity of a product item using the Ethereum blockchain.
       </p>
     </div>
 
@@ -45,13 +45,45 @@
           size="50"
         /><br />
         <div class="button-div">
-          <button class="btn-fetchOne" id="button" type="button" data-id="9">
+          <button
+            class="btn-fetchOne"
+            id="button-fetch-buffer-one"
+            type="button"
+            data-id="9"
+          >
             Fetch Data 1
           </button>
-          <button class="btn-fetchTwo" id="button" type="button" data-id="10">
+          <button
+            class="btn-fetchTwo"
+            id="button-fetch-buffer-two"
+            type="button"
+            data-id="10"
+          >
             Fetch Data 2
           </button>
         </div>
+      </div>
+      <div class="form-break"></div>
+      <h2>Set Product Image</h2>
+      <div class="form-group">
+        Procut Image Hash
+        <br />
+        <input
+          type="text"
+          id="productImageHash"
+          name="productImageHash"
+          value=""
+        /><br />
+        <br />
+        <input type="file" id="file-upload" />
+        <button
+          class="btn-image"
+          id="button-set-image-hash"
+          type="button"
+          data-id="11"
+        >
+          Save Image Hash in Ethereum
+        </button>
       </div>
       <div class="form-break"></div>
       <h2>Farm Details</h2>
@@ -97,17 +129,26 @@
           name="originFarmLongitude"
           value="888.8888"
         /><br />
-        <br />
-        <button class="btn-harvest" id="button" type="button" data-id="1">
+        <button
+          class="btn-harvest"
+          id="button-harvest"
+          type="button"
+          data-id="1"
+        >
           Harvest
         </button>
-        <button class="btn-process" id="button" type="button" data-id="2">
+        <button
+          class="btn-process"
+          id="button-process"
+          type="button"
+          data-id="2"
+        >
           Process
         </button>
-        <button class="btn-pack" id="button" type="button" data-id="3">
+        <button class="btn-pack" id="button-pack" type="button" data-id="3">
           Pack
         </button>
-        <button class="btn-forsale" id="button" type="button" data-id="4">
+        <button class="btn-forsale" id="button-sell" type="button" data-id="4">
           ForSale
         </button>
       </div>
@@ -160,16 +201,26 @@
           size="50"
         /><br />
         <br />
-        <button class="btn-buy" id="button" type="button" data-id="5">
+        <button class="btn-buy" id="button-buy" type="button" data-id="5">
           Buy
         </button>
-        <button class="btn-ship" id="button" type="button" data-id="6">
+        <button class="btn-ship" id="button-ship" type="button" data-id="6">
           Ship
         </button>
-        <button class="btn-receive" id="button" type="button" data-id="7">
+        <button
+          class="btn-receive"
+          id="button-receive"
+          type="button"
+          data-id="7"
+        >
           Receive
         </button>
-        <button class="btn-purchase" id="button" type="button" data-id="8">
+        <button
+          class="btn-purchase"
+          id="button-purchase"
+          type="button"
+          data-id="8"
+        >
           Purchase
         </button>
       </div>
@@ -187,7 +238,7 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- <script src="js/web3.min.js"></script> -->
+    <script src="https://unpkg.com/ipfs-api/dist/index.js"></script>
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>
   </body>

@@ -1,5 +1,6 @@
 App = {
   web3Provider: null,
+  ipfs: null,
   contracts: {},
   emptyAddress: "0x0000000000000000000000000000000000000000",
   sku: 0,
@@ -19,8 +20,16 @@ App = {
 
   init: async function () {
     App.readForm();
-    /// Setup access to blockchain
+    await App.initIpfs();
     return await App.initWeb3();
+  },
+
+  initIpfs: async function () {
+    App.ipfs = window.IpfsApi({
+      host: "ipfs.infura.io",
+      port: "5001",
+      protocol: "https",
+    });
   },
 
   readForm: function () {
@@ -34,6 +43,7 @@ App = {
     App.originFarmLongitude = $("#originFarmLongitude").val();
     App.productNotes = $("#productNotes").val();
     App.productPrice = $("#productPrice").val();
+    App.productImageHash = $("#productImageHash").val();
     App.distributorID = $("#distributorID").val();
     App.retailerID = $("#retailerID").val();
     App.consumerID = $("#consumerID").val();
@@ -49,6 +59,7 @@ App = {
       App.originFarmLongitude,
       App.productNotes,
       App.productPrice,
+      App.productImageHash,
       App.distributorID,
       App.retailerID,
       App.consumerID
@@ -57,18 +68,17 @@ App = {
 
   initWeb3: async function () {
     /// Find or Inject Web3 Provider
-    /// Modern dapp browsers...
+    /// Modern dapp browsers
     if (window.ethereum) {
       App.web3Provider = window.ethereum;
       try {
         // Request account access
         await window.ethereum.enable();
       } catch (error) {
-        // User denied account access...
         console.error("User denied account access");
       }
     }
-    // Legacy dapp browsers...
+    // Legacy dapp browsers
     else if (window.web3) {
       App.web3Provider = window.web3.currentProvider;
     }
@@ -80,14 +90,12 @@ App = {
     }
 
     App.getMetaskAccountID();
-
     return App.initSupplyChain();
   },
 
   getMetaskAccountID: function () {
     web3 = new Web3(App.web3Provider);
 
-    // Retrieving accounts
     web3.eth.getAccounts(function (err, res) {
       if (err) {
         console.log("Error:", err);
@@ -99,10 +107,8 @@ App = {
   },
 
   initSupplyChain: function () {
-    /// Source the truffle compiled smart contracts
     var jsonSupplyChain = "../../build/contracts/SupplyChain.json";
 
-    /// JSONfy the smart contracts
     $.getJSON(jsonSupplyChain, function (data) {
       console.log("data", data);
       var SupplyChainArtifact = data;
@@ -118,9 +124,56 @@ App = {
   },
 
   bindEvents: function () {
-    $(document).on("click", App.handleButtonClick);
+    document
+      .getElementById("file-upload")
+      .addEventListener("change", App.handleFileUpload);
+
+    document
+      .getElementById("button-set-image-hash")
+      .addEventListener("click", App.saveProductImageHash);
+
+    document
+      .getElementById("button-harvest")
+      .addEventListener("click", App.harvestItem);
+
+    document
+      .getElementById("button-process")
+      .addEventListener("click", App.processItem);
+
+    document
+      .getElementById("button-pack")
+      .addEventListener("click", App.packItem);
+
+    document
+      .getElementById("button-sell")
+      .addEventListener("click", App.sellItem);
+
+    document
+      .getElementById("button-buy")
+      .addEventListener("click", App.buyItem);
+
+    document
+      .getElementById("button-ship")
+      .addEventListener("click", App.shipItem);
+
+    document
+      .getElementById("button-receive")
+      .addEventListener("click", App.receiveItem);
+
+    document
+      .getElementById("button-purchase")
+      .addEventListener("click", App.purchaseItem);
+
+    document
+      .getElementById("button-fetch-buffer-one")
+      .addEventListener("click", App.fetchItemBufferOne);
+
+    document
+      .getElementById("button-fetch-buffer-two")
+      .addEventListener("click", App.fetchItemBufferOne);
   },
 
+  /*
   handleButtonClick: async function (event) {
     event.preventDefault();
 
@@ -160,12 +213,14 @@ App = {
       case 10:
         return await App.fetchItemBufferTwo(event);
         break;
+      case 11:
+        return await App.setItemImage(event);
+        break;
     }
-  },
+  },*/
 
   harvestItem: function (event) {
     event.preventDefault();
-    var processId = parseInt($(event.target).data("id"));
 
     App.contracts.SupplyChain.deployed()
       .then(function (instance) {
@@ -190,7 +245,6 @@ App = {
 
   processItem: function (event) {
     event.preventDefault();
-    var processId = parseInt($(event.target).data("id"));
 
     App.contracts.SupplyChain.deployed()
       .then(function (instance) {
@@ -207,7 +261,6 @@ App = {
 
   packItem: function (event) {
     event.preventDefault();
-    var processId = parseInt($(event.target).data("id"));
 
     App.contracts.SupplyChain.deployed()
       .then(function (instance) {
@@ -224,7 +277,6 @@ App = {
 
   sellItem: function (event) {
     event.preventDefault();
-    var processId = parseInt($(event.target).data("id"));
 
     App.contracts.SupplyChain.deployed()
       .then(function (instance) {
@@ -245,7 +297,6 @@ App = {
 
   buyItem: function (event) {
     event.preventDefault();
-    var processId = parseInt($(event.target).data("id"));
 
     App.contracts.SupplyChain.deployed()
       .then(function (instance) {
@@ -266,7 +317,6 @@ App = {
 
   shipItem: function (event) {
     event.preventDefault();
-    var processId = parseInt($(event.target).data("id"));
 
     App.contracts.SupplyChain.deployed()
       .then(function (instance) {
@@ -283,7 +333,6 @@ App = {
 
   receiveItem: function (event) {
     event.preventDefault();
-    var processId = parseInt($(event.target).data("id"));
 
     App.contracts.SupplyChain.deployed()
       .then(function (instance) {
@@ -300,7 +349,6 @@ App = {
 
   purchaseItem: function (event) {
     event.preventDefault();
-    var processId = parseInt($(event.target).data("id"));
 
     App.contracts.SupplyChain.deployed()
       .then(function (instance) {
@@ -315,9 +363,54 @@ App = {
       });
   },
 
+  handleFileUpload: async function (event) {
+    event.preventDefault();
+
+    let file = event.target.files[0];
+    let reader = new FileReader();
+
+    reader.readAsArrayBuffer(file);
+
+    reader.onload = function () {
+      console.log(reader.result);
+      var arrayBuffer = reader.result;
+      var buffer = new App.ipfs.Buffer(arrayBuffer);
+
+      App.ipfs.add(buffer, (err, data) => {
+        console.log("IPFS HASH:", data[0].hash);
+        document.getElementById("productImageHash").value = data[0].hash;
+        if (err) {
+          console.log("Error:", err);
+        }
+      });
+    };
+
+    reader.onerror = function () {
+      console.log(reader.error);
+    };
+  },
+
+  saveProductImageHash: function (event) {
+    event.preventDefault();
+
+    App.contracts.SupplyChain.deployed()
+      .then(function (instance) {
+        var imageHash = $("#productImageHash").val();
+        console.log("imageHash:" + imageHash);
+        return instance.setProductImageHash(App.upc, imageHash, {
+          from: App.metamaskAccountID,
+        });
+      })
+      .then(function (result) {
+        $("#ftc-item").text(result);
+        console.log("uploadItemImage", result);
+      })
+      .catch(function (err) {
+        console.log(err.message);
+      });
+  },
+
   fetchItemBufferOne: function () {
-    ///   event.preventDefault();
-    ///    var processId = parseInt($(event.target).data('id'));
     App.upc = $("#upc").val();
     console.log("upc", App.upc);
 
@@ -335,9 +428,6 @@ App = {
   },
 
   fetchItemBufferTwo: function () {
-    ///    event.preventDefault();
-    ///    var processId = parseInt($(event.target).data('id'));
-
     App.contracts.SupplyChain.deployed()
       .then(function (instance) {
         return instance.fetchItemBufferTwo.call(App.upc);

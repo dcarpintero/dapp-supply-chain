@@ -1,8 +1,10 @@
 # eth-supply-chain
 
+ganache-cli -m "spirit supply whale amount human item harsh scare congress discover talent hamster"
+
 ## Project Description
 
-Ethereum DApp that exemplifies a Supply Chain wherein Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements **access control** and **state transitions** as defined in the diagrams below.
+Ethereum DApp that exemplifies a Supply Chain wherein Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements **Access Control** and **State Transitions** as defined in the diagrams below.
 
 ## UML Diagrams
 
@@ -61,7 +63,7 @@ Compile, test and migrate
 ```
 truffle compile
 truffle test
-truffle migrate
+truffle migrate --reset --network=rinkeby
 ```
 
 Lauch the DApp
