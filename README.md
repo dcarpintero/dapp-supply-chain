@@ -39,6 +39,7 @@ Integrates IPFS storage for product images, the returned hash is then saved as p
 
 ### Smart Contract
 
+- Transaction on the Rinkeby Network: https://rinkeby.etherscan.io/tx/0xf32530de6483b54e7d0c818fbb12ca1ab14fb4a7ffab42552f7e0bc25202841c
 - Contract Address on the Rinkeby Network: https://rinkeby.etherscan.io/address/0xC53eC3E3c97Ad52485d78FDC632855f28018cc0a
 
 ### IPFS
