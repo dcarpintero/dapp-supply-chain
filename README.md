@@ -1,7 +1,5 @@
 # eth-supply-chain
 
-ganache-cli -m "spirit supply whale amount human item harsh scare congress discover talent hamster"
-
 ## Project Description
 
 Supply Chain Ethereum DApp. Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements **Access Control** and **State Transitions** as defined in the diagrams below.
@@ -55,7 +53,7 @@ Integrates IPFS storage for product images, the returned hash is then saved as p
 - ItemImageHashSaved: 0xb2202032cbdf176207dc485b8febcfc8432d5a36388bdb8253225f9831ed67bc
 - Packed: 0xece69c876b90a702c575126a3899276cb536508e7ccbf365830942a42a333ad3
 - ForSale: 0xb06b9089981d7ae93c45aa0393549659e7be05eba395c5ed39518f954d45a994
-- **OwnerChange**: 0x718eb83414b886852f25b49b33efe22e45b5a7265a0ece494b4e37bbc9e9b160
+- **OwnerChanged**: 0x718eb83414b886852f25b49b33efe22e45b5a7265a0ece494b4e37bbc9e9b160
 - Sold: 0x718eb83414b886852f25b49b33efe22e45b5a7265a0ece494b4e37bbc9e9b160
 - Shipped: 0x254acbf1f274f162e54f52a3bd639e5ac5b89ce45a1d856204ca6c76876cbd3f
 - **OwnerChanged**: 0xc61fb724a34e99ae4999af6fbf1fcf0badeb19dff0ab383c3ce3fedc4b500646
