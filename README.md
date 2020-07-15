@@ -4,7 +4,7 @@
 
 Supply Chain Ethereum DApp. Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements **Access Control** and **State Transitions** as defined in the diagrams below.
 
-Integrates IPFS storage for product images, the returned hash is then saved as part of the Item's metadata.
+Integrates **IPFS storage** for product images, the returned hash is then saved as part of the Item's metadata.
 
 ## UML Diagrams
 
@@ -39,12 +39,12 @@ Integrates IPFS storage for product images, the returned hash is then saved as p
 
 ### Smart Contract
 
-- Transaction on the Rinkeby Network: https://rinkeby.etherscan.io/tx/0xf32530de6483b54e7d0c818fbb12ca1ab14fb4a7ffab42552f7e0bc25202841c
+- Deployment TX on the Rinkeby Network: https://rinkeby.etherscan.io/tx/0xf32530de6483b54e7d0c818fbb12ca1ab14fb4a7ffab42552f7e0bc25202841c
 - Contract Address on the Rinkeby Network: https://rinkeby.etherscan.io/address/0xC53eC3E3c97Ad52485d78FDC632855f28018cc0a
 
 ### IPFS
 
-- Product Image IPHS Hash: QmabWWJ2ED6FjgpbgXrjX8qotwDfXp2r9DvUTMHbFVjSCg
+- Product Image IPFS Hash: QmabWWJ2ED6FjgpbgXrjX8qotwDfXp2r9DvUTMHbFVjSCg
 - Product Image in IPFS: https://ipfs.infura.io:5001/api/v0/cat?arg=QmabWWJ2ED6FjgpbgXrjX8qotwDfXp2r9DvUTMHbFVjSCg
 
 ### TX history
