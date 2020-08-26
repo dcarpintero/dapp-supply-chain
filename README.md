@@ -1,8 +1,8 @@
-# eth-supply-chain
+# Decentralized Supply Chain
 
 ## Project Description
 
-Supply Chain Ethereum DApp. Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements **Access Control** and **State Transitions** as defined in the diagrams below.
+Supply Chain DApp. Items are tracked along Farmers, Distributors, Retailers and Consumers. Implements **Access Control** and **State Transitions** as defined in the diagrams below.
 
 Integrates **IPFS storage** for product images, the returned hash is then saved as part of the Item's metadata.
 
